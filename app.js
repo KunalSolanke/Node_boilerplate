@@ -15,7 +15,7 @@ var app = express();
 
 var Sentry = require("@sentry/node");
 var Tracing = require("@sentry/tracing");
-const SENTRY_URL=process.env.SENTRY_URL;
+const SENTRY_URL = process.env.SENTRY_URL;
 Sentry.init({
   dsn: SENTRY_URL,
   integrations: [
@@ -44,8 +44,8 @@ app.use(express.static(path.join(__dirname, "public")));
 /*========== ROUTING SETUP : DECLARE YOURS ROUTERS INSIDE INDEXROUTER =================================*/
 
 BASE_URL = process.env.BASE_URL || "project";
-app.use("/", (req, res) => res.redirect(BASE_URL));
-app.use(`${BASE_URL}/`, indexRouter);
+app.get("/", (req, res) => res.redirect(`/${BASE_URL}`));
+app.use(`/${BASE_URL}`, indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

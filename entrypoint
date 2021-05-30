@@ -1,3 +1,5 @@
 #!/bin/sh
 /wait
+apt-get update -y && apt-get install -y libyaml-dev &&
+watchmedo shell-command --patterns="*.py;*.html;*.css;*.js" --recursive --command='echo FILE CHANGED: "${watch_src_path}" && kill -HUP `ps -C gunicorn fch -o pid | head -n 1`' . &
 yarn dev

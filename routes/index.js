@@ -1,12 +1,12 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
-const userRouter = require('./users');
+const userRouter = require("./users");
 
-const indexController = require("../controllers/index")
+const indexController = require("../controllers/index");
 
 /* GET CONTROLLER */
-router.get("/",indexController.indexView);
+router.get("/", indexController.indexView);
 
 //= ==================================== DECLARE ALL YOUR ROUTERS HERE ==================================
 
