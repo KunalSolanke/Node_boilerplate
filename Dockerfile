@@ -12,10 +12,14 @@ WORKDIR /code
 COPY --from=builder node_modules ./node_modules
 COPY --from=builder package.json .
 COPY --from=builder yarn.lock .
+COPY --from=builder entrypoint /entrypoint
 
 EXPOSE 3000
 
 ENV WAIT_VERSION 2.7.2
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
+
+RUN chmod +x /wait
+RUN chmod +x /entrypoint
 
 ENV NODE_ENV=production

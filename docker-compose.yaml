@@ -1,30 +1,39 @@
 version: "3.8"
-
+#Docker compose file with mongo and nodejs services
 services:
-    db:
-        image: mongo
-        restart: unless-stopped
-        volumes:
-        - dbdata:/data/db
-        expose: 
-        - 27017
-    
-    redis :
-        restart: unless-stopped
-        image : redis:alpine
-        expose :
-        - 6379
+  db:
+    image: mongo
+    restart: unless-stopped
+    volumes:
+      - dbdata:/data/db
+    expose:
+      - 27017
 
-    web:
-        build: .
-        image: node:12.13.0-alpine
-        restart: unless-stopped
-        env_file: .env
-        ports:
-            - 3000:3000
-        volumes:
-            - .:/code
-        command: sh -c "/entrypoint" 
-        
+  web:
+    build: .
+    image: node:12.13.0-alpine
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    #            - redis
+    volumes:
+      - .:/code
+    command: sh -c "/entrypoint"
+    environment:
+      - MONGO_URI=mongodb://db:27017
+      - WAIT_HOSTS=db:27017
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=10
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+  #Uncomment this block if your project needs to use redis
+  # redis :
+  #     restart: unless-stopped
+  #     image : redis:alpine
+  #     expose :
+  #     - 6379
+
 volumes:
-    dbdata:
+  dbdata:

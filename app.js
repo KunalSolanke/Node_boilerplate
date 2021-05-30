@@ -11,6 +11,25 @@ var indexRouter = require("./routes/index");
 
 var app = express();
 
+//====================== SENTRY SETUP ===========================================
+
+var Sentry = require("@sentry/node");
+var Tracing = require("@sentry/tracing");
+const SENTRY_URL=process.env.SENTRY_URL;
+Sentry.init({
+  dsn: SENTRY_URL,
+  integrations: [
+    // enable HTTP calls tracing
+    new Sentry.Integrations.Http({ tracing: true }),
+    // enable Express.js middleware tracing
+    new Tracing.Integrations.Express({ app }),
+  ],
+  tracesSampleRate: 1.0,
+});
+
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -33,6 +52,7 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+app.use(Sentry.Handlers.errorHandler());
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
