@@ -55,6 +55,13 @@ The docker files and environment variables are configured to be spin up mongo db
 2. Remove all volumes: `docker volume rm $(docker volume ls -q)`
 
 
+
+
+**Admin panel:**
+<img align="center" src="./public/images/landing.png"/>
+In dev you can set email inside .env and pass can be anything for loggin into admin panel make sure to remove those in product
+
+
 ## Editor Setup
 
 If you're using Visual Studio Code, you can install the ESLint extension, which

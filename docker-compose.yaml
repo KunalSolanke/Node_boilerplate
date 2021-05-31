@@ -11,7 +11,7 @@ services:
 
   web:
     build: .
-    image: node:12.13.0-alpine
+    image: swc_project/dev
     restart: unless-stopped
     env_file: .env
     ports:

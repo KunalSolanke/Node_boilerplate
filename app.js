@@ -13,7 +13,8 @@ BASE_URL = process.env.BASE_URL || "project";
 
 /* ===================== ADMIN SETUP ====================== */
 const adminRouter = require("./admin");
-(async () => app.use(`/${BASE_URL}/admin`, await adminRouter()))();
+let router = adminRouter();
+app.use(`/${BASE_URL}/admin`, router);
 //====================== SENTRY SETUP ===========================================
 
 var Sentry = require("@sentry/node");

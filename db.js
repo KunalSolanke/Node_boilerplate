@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 
-const configure_db = async()=>{
-  const db = await mongoose.connect(process.env.MONGO_URI, {
+const configure_db = ()=>{
+  mongoose.connect(process.env.MONGO_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -16,7 +16,7 @@ const configure_db = async()=>{
   conn.on("open", () => {
     console.log("Db is connected")
   });
-  return db;
+  return mongoose;
 }
 
 
