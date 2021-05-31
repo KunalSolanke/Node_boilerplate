@@ -5,7 +5,7 @@
 <br/>
     
      This is just another nodejs boilerplate with docker and eslint configuration to make dev easier .
-<img align="center" src="./public/images/landing.png"/>
+<img align="center" src="./public/images/admin.png"/>
     
 ## Skeleton
 
