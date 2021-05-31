@@ -4,8 +4,9 @@
 <br/>
 <br/>
     
-     This is just another nodejs boilerplate with docker and eslint configuration
-
+     This is just another nodejs boilerplate with docker and eslint configuration to make dev easier .
+<img align="center" src="./public/images/landing.png"/>
+    
 ## Skeleton
 
 Here is the basic suggested skeleton for your app repo that each of the starter templates conforms to:
@@ -48,6 +49,11 @@ The docker files and environment variables are configured to be spin up mongo db
   #Stop containers in diff terminal than docker
   docker-compose --volumes down
 ```
+
+**Helpers:**
+1. Remove dangling images: `docker rmi $(docker images -f dangling=true -q ) -f`
+2. Remove all volumes: `docker volume rm $(docker volume ls -q)`
+
 
 ## Editor Setup
 

@@ -23,7 +23,7 @@ services:
       - .:/code
     command: sh -c "/entrypoint"
     environment:
-      - MONGO_URI=mongodb://db:27017
+      - MONGO_URI=mongodb://db:27017/project
       - WAIT_HOSTS=db:27017
       - WAIT_HOSTS_TIMEOUT=300
       - WAIT_SLEEP_INTERVAL=10

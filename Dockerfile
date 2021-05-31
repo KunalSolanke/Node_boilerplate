@@ -1,25 +1,18 @@
-FROM node:12.13.0-alpine AS builder
-
-RUN apk --no-cache add python make g++ curl bash
-
-COPY . .
-RUN yarn install
-
-RUN rm -rf node_modules && yarn install --production
-
 FROM node:12.13.0-alpine
 WORKDIR /code
-COPY --from=builder node_modules ./node_modules
-COPY --from=builder package.json .
-COPY --from=builder yarn.lock .
-COPY --from=builder entrypoint /entrypoint
 
-EXPOSE 3000
+RUN mkdir -p /code/node_modules
+COPY package*.json ./
 
+#Setup
+RUN yarn install
 ENV WAIT_VERSION 2.7.2
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/$WAIT_VERSION/wait /wait
-
+ADD ./entrypoint /entrypoint
 RUN chmod +x /wait
 RUN chmod +x /entrypoint
 
-ENV NODE_ENV=production
+EXPOSE 3000
+ENV NODE_ENV=development
+
+COPY . .

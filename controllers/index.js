@@ -1,1 +1,1 @@
-exports.indexView = (req, res) => res.render("index");
+exports.indexView = (req, res) => res.render("layout");
