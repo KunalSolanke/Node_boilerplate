@@ -1,13 +1,8 @@
-# Nodejs boilerplate
-
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGkStn_FengP4Z2_GySuRaKOvCdE1PWWaK0A&usqp=CAU" align="center">
-<br/>
-<br/>
-    
+# Nodejs boilerplate    
      This is just another nodejs boilerplate with docker and eslint configuration to make dev easier .
 
 <img align="center" src="./public/images/landing.png"/>
-    
+
 ## Skeleton
 
 Here is the basic suggested skeleton for your app repo that each of the starter templates conforms to:
