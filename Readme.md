@@ -44,6 +44,14 @@ The docker files and environment variables are configured to be spin up mongo db
   docker-compose up
   #Stop containers in diff terminal than docker
   docker-compose --volumes down
+  #build docker images 
+  docker-compose up --build #if there are changes in installed deps
+  #faster builds
+  COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
+  #windows
+  set "COMPOSE_DOCKER_CLI_BUILD=1" & set "DOCKER_BUILDKIT=1" & docker-compose build
+  # or to make this permanent add following to docker daemon /etc/docker/daemon.json
+  { "features": { "buildkit": true } }
 ```
 
 **Helpers:**
@@ -56,7 +64,7 @@ The docker files and environment variables are configured to be spin up mongo db
 **Admin panel:**
 
 <img align="center" src="./public/images/admin.png"/>
-In dev you can set email inside .env and pass can be anything for loggin into admin panel make sure to remove those in product
+In dev you can use any valid email  pass can be anything for login into admin panel make sure to remove those in product
 
 
 ## Editor Setup

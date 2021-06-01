@@ -25,10 +25,10 @@ const configureAdmin = () => {
       authenticate: async (email, pass) => {
         try {
           let admin;
-          if (true) {
+          if (process.env.NODE_ENV == "development") {
             admin = {
               username: "admin",
-              email: process.env.PROJECT_ADMIN,
+              email: "admin@gmail.com",
             };
           } else {
             admin = await models.User.findByCredentials(
