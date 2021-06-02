@@ -1,7 +1,6 @@
 const express = require("express");
 let router = express.Router();
 let configure_db = require("./db");
-const session = require("./middlewares/express-mongo-store");
 const models = require("./models");
 const AdminBro = require("admin-bro");
 const AdminBroExpress = require("@admin-bro/express");
@@ -11,6 +10,7 @@ BASE_URL = process.env.BASE_URL || "project";
 
 const configureAdmin = () => {
   const connection = configure_db();
+  const session = require("./middlewares/express-mongo-store");
   AdminBro.registerAdapter(AdminBroMongoose);
   const adminBro = new AdminBro({
     databases: [connection],

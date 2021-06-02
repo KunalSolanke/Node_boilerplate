@@ -5,7 +5,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const expressLayouts = require("express-ejs-layouts");
 require("dotenv").config();
-const session = require("./middlewares/express-mongo-store");
 var indexRouter = require("./routes/index");
 
 var app = express();
@@ -15,6 +14,7 @@ BASE_URL = process.env.BASE_URL || "project";
 const adminRouter = require("./admin");
 let router = adminRouter();
 app.use(`/${BASE_URL}/admin`, router);
+const session = require("./middlewares/express-mongo-store");
 //====================== SENTRY SETUP ===========================================
 
 var Sentry = require("@sentry/node");
@@ -43,7 +43,7 @@ app.use(logger("tiny"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(`/${BASE_URL}`, express.static(path.join(__dirname, "public")));
 
 /*========== ROUTING SETUP : DECLARE YOURS ROUTERS INSIDE INDEXROUTER =================================*/
 

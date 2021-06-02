@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-
-const configure_db = ()=>{
+const configure_db = () => {
   mongoose.connect(process.env.MONGO_URI, {
     useCreateIndex: true,
     useNewUrlParser: true,
@@ -14,11 +13,9 @@ const configure_db = ()=>{
     console.log(err);
   });
   conn.on("open", () => {
-    console.log("Db is connected")
+    console.log("Db is connected");
   });
   return mongoose;
-}
-
-
+};
 
 module.exports = configure_db;
